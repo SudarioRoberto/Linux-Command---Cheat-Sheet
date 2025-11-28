@@ -1,8 +1,9 @@
 # Linux-Command---Cheat-Sheet
 Commands for Linux
 
-```bash 1-HARDWARE INFORMATION
+## 1-HARDWARE INFORMATION
 
+```bash
 ### Display messages in kernel ring buffer
 dmesg
 
