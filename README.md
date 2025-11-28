@@ -17,19 +17,26 @@ cat /proc/cpuinfo
 Display memory information 
 ```cat /proc/meminfo```
 
-### Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
+Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
+```
 free -h
+```
 
-### Display PCI devices
+Display PCI devices
+```
 lspci -tv
+```
 
-### Display USB devices
+Display USB devices
+```
 lsusb -tv
-
-### Display DMI/SMBIOS (hardware info) from the BIOS
+```
+Display DMI/SMBIOS (hardware info) from the BIOS
+```
 dmidecode
+```
 
-### Show info about disk sda
+Show info about disk sda
 hdparm -i /dev/sda
 
 ### Perform a read speed test on disk sda
