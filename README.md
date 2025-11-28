@@ -2,7 +2,7 @@
 
 Commands for Linux
 
-#### 1-HARDWARE INFORMATION
+### 1-HARDWARE INFORMATION
 
  Display messages in kernel ring buffer
 ```
