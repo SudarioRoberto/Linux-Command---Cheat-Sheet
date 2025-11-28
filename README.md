@@ -14,7 +14,7 @@ Display CPU information
 ``` cat /proc/cpuinfo ```
 
 Display memory information
-```cat /proc/meminfo`
+``cat /proc/meminfo``
 
 ### Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
 free -h
