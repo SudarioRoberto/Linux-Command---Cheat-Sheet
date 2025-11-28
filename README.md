@@ -10,7 +10,9 @@ dmesg
 ```
 
 Display CPU information
-``` cat /proc/cpuinfo ```
+``` 
+cat /proc/cpuinfo
+```
 
 Display memory information 
 ```cat /proc/meminfo```
