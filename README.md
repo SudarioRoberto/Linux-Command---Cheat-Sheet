@@ -1,121 +1,125 @@
-# Linux-Command---Cheat-Sheet
+# Linux Command Cheat Sheet
 
-Commands for Linux
+Quick reference for general Linux use and bioinformatics workflows (HPC + metagenomics)
 
-### 1-HARDWARE INFORMATION
+---
 
- Display messages in kernel ring buffer
-```
-dmesg
-```
+## Hardware and System Information
 
-Display CPU information
-``` 
-cat /proc/cpuinfo
-```
-
-Display memory information 
-```cat /proc/meminfo```
-
-Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
-```
-free -h
+```bash
+dmesg                     # Kernel messages
+cat /proc/cpuinfo         # CPU information
+cat /proc/meminfo         # Memory information
+free -h                   # Free and used memory
+lsusb -tv                 # USB devices
+lspci -tv                 # PCI devices
+df -h                     # Disk usage overview
+du -sh *                  # Folder sizes in current directory
+top                       # Running processes live
 ```
 
-Display PCI devices
+## Navigation and File Management
+
+```bash
+pwd                       # Current directory
+ls -al                    # List files with details
+cd folder/                # Change directory
+mkdir folder              # Create folder
+cp file dest/             # Copy file
+mv file dest/             # Move or rename file
+rm file                   # Remove file
+rm -rf folder             # Remove folder recursively (dangerous)
+touch file.txt            # Create empty file
+cat file                  # View file content
+less file                 # Scroll through file
+head file                 # First 10 lines
+tail file                 # Last 10 lines
+tail -f file              # Follow log updates
 ```
-lspci -tv
+
+## Search and Find Files
+
+```bash
+grep "text" file                 # Search text inside file
+grep -r "text" folder/           # Recursive search
+find . -name "*.fastq.gz"        # Find FASTQ files
 ```
 
-Display USB devices
+## Compression Commands
+
+```bash
+gzip file.fastq                  # Compress
+gunzip file.fastq.gz             # Decompress
+tar -xvf archive.tar             # Extract .tar
+tar -czvf file.tar.gz folder/    # Create .tar.gz
 ```
-lsusb -tv
+
+## Conda Environments
+
+```bash
+conda activate pig_metagenomics
+conda deactivate
+conda env list
 ```
-Display DMI/SMBIOS (hardware info) from the BIOS
+
+## HPC and Slurm Scheduling
+
+```bash
+sbatch job.sbatch            # Submit job
+squeue -u $USER              # My running jobs
+scancel JOBID                # Cancel job
+sinfo                        # View partitions
 ```
-dmidecode
+
+## FastQ Read Counting + QC
+
+```bash
+zcat file.fastq.gz | wc -l        # Count lines (divide by 4 for reads)
+fastqc *.fastq.gz                 # Run FastQC on multiple files
+multiqc .                         # Aggregate QC into 1 report
 ```
 
-Show info about disk sda
-hdparm -i /dev/sda
+## Host Removal / Kneaddata Commands
 
-### Perform a read speed test on disk sda
-hdparm -tT /dev/sda
+**Standard paired-end command:**
 
-### Test for unreadable blocks on disk sda
-badblocks -s /dev/sda
+```bash
+kneaddata -i R1.fastq.gz -i R2.fastq.gz \
+--reference-db pig_genome/ \
+-o knead_out/ \
+--trimmomatic trimmomatic_path \
+--bowtie2 bowtie2_path
+```
 
+**Check host removal results:**
 
-## 2- FILE AND DIRECTORY COMMANDS
+```bash
+grep "Remaining reads" *.log
+grep "Total reads after" -r knead_out/
+```
 
-### List all files in a long listing (detailed) format
-ls -al
+## File Permissions
 
-### Display the present working directory
-pwd
+```bash
+chmod +x script.sh           # Make executable
+chmod 644 file               # Standard readable permissions
+```
 
-### Create a directory
-mkdir directory
+## Download and Integrity Check
 
-### Remove (delete) file
-rm file
+```bash
+wget URL                     # Download file
+curl -O URL                 # Download file
+sha256sum file               # Check file integrity
+```
 
-### Remove the directory and its contents recursively
-rm -r directory
+## ⚠️ Safety Reminders
 
-### Force removal of file without prompting for confirmation
-rm -f file
+```bash
+rm -rf /                     # Never run this
+sudo anything                # Avoid on HPC
+```
 
-### Forcefully remove directory recursively
-rm -rf directory
+---
 
-### Copy file1 to file2
-cp file1 file2
-
-### Copy source_directory recursively to destination. If destination exists, copy source_directory into destination, otherwise create destination with the contents of source_directory.
-cp -r source_directory destination
-
-### Rename or move file1 to file2. If file2 is an existing directory, move file1 into directory file2
-mv file1 file2
-
-### Create symbolic link to linkname
-ln -s /path/to/file linkname
-
-### Create an empty file or update the access and modification times of file.
-touch file
-
-### View the contents of file
-cat file
-
-### Browse through a text file
-less file
-
-### Display the first 10 lines of file
-head file
-
-### Display the last 10 lines of file
-tail file
-
-
-
-## 3- Disk Usage 
-
-### Show free and used space on mounted filesystems
-df -h
-
-### Show free and used inodes on mounted filesystems
-df -i
-
-### Display disks partitions sizes and types
-fdisk -l
-
-### Display disk usage for all files and directories in human readable format
-du -ah
-
-### Display total disk usage off the current directory
-du -sh
-
-### Display the last 10 lines of file and "follow" the file as it grows.
-tail -f file
-
-
+*Last updated: November 2025*
