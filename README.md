@@ -4,11 +4,10 @@ Commands for Linux
 
 #### 1-HARDWARE INFORMATION
 
-```bash
-### Display messages in kernel ring buffer
-```bash
+ Display messages in kernel ring buffer
+```
 dmesg
-```bash
+```
 
 ### Display CPU information
 cat /proc/cpuinfo
