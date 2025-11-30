@@ -4,20 +4,6 @@ Quick reference for general Linux use and bioinformatics workflows (HPC + metage
 
 ---
 
-## Hardware and System Information
-
-```bash
-dmesg                     # Kernel messages
-cat /proc/cpuinfo         # CPU information
-cat /proc/meminfo         # Memory information
-free -h                   # Free and used memory
-lsusb -tv                 # USB devices
-lspci -tv                 # PCI devices
-df -h                     # Disk usage overview
-du -sh *                  # Folder sizes in current directory
-top                       # Running processes live
-```
-
 ## Navigation and File Management
 
 ```bash
@@ -35,7 +21,24 @@ less file                 # Scroll through file
 head file                 # First 10 lines
 tail file                 # Last 10 lines
 tail -f file              # Follow log updates
+ls folder/*/              # List of files with details
 ```
+
+## Hardware and System Information
+
+```bash
+dmesg                     # Kernel messages
+cat /proc/cpuinfo         # CPU information
+cat /proc/meminfo         # Memory information
+free -h                   # Free and used memory
+lsusb -tv                 # USB devices
+lspci -tv                 # PCI devices
+df -h                     # Disk usage overview
+du -sh *                  # Folder sizes in current directory
+top                       # Running processes live
+```
+
+
 
 ## Search and Find Files
 
